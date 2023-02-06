@@ -1,34 +1,17 @@
 package com.selenium.course.tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import base.TestUtil;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class FirstSeleniumTest {
-    public WebDriver driver;
+public class FirstSeleniumTest extends TestUtil {
+    private static final String ADD_TO_CARD_BUTTON_ID = "add-to-cart-sauce-labs-";
 
-    @BeforeTest
-    public void setUp(){
-        WebDriverManager.chromedriver().setup(); //Automatically downloads and prepare webdriver for the version of the browser
-        driver = new ChromeDriver(); //uses the downloaded driver version
-        //driver.manage().window().fullscreen();
-    }
-
-    @AfterTest
-    public void tearDown(){
-        driver.quit();
-    }
 
     @Test
     public void successfulLoginSauceDemo() throws InterruptedException {
-        //Open the test page
-        driver.get("https://www.saucedemo.com/");
 
         //elements on login page
         WebElement usernameInput = driver.findElement(By.cssSelector("[data-test=\"username\"]"));
@@ -49,6 +32,8 @@ public class FirstSeleniumTest {
         WebElement profileMenuXBtn = driver.findElement(By.id("react-burger-cross-btn"));
         WebElement logoutLink = driver.findElement(By.id("logout_sidebar_link"));
         WebElement productsPageTitle = driver.findElement(By.xpath("//span[text()='Products']"));
+        //example of contains:
+        //WebElement productsPageTitle = driver.findElement(By.xpath("//span[contains(text(),'Produc')]"));
         // //*[@id="item_4_title_link"]/div
 
         profileMenu.click();
