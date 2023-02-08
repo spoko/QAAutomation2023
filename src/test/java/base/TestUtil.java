@@ -11,17 +11,20 @@ import org.testng.annotations.BeforeTest;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 
 public class TestUtil {
     public WebDriver driver;
     public String applicationUrl, browser;
+    public int implicitWait;
 
 
     @BeforeMethod
     public void setUp(){
         readConfig("src/test/resources/config.properties");
         setupBrowserDriver(browser); //Todo add wait config
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
         loadTestUrl(applicationUrl);
     }
 
@@ -43,7 +46,7 @@ public class TestUtil {
 
     private WebDriver setupChromeDriver(){
         WebDriverManager.chromedriver().setup(); //Automatically downloads and prepare webdriver for the version of the browser
-       return new ChromeDriver(); //uses the downloaded driver version
+        return new ChromeDriver(); //uses the downloaded driver version
     }
 
     private WebDriver setupFireFoxDriver(){
@@ -58,6 +61,7 @@ public class TestUtil {
             config.load(configFile);
             applicationUrl = config.getProperty("url");
             browser = config.getProperty("browser");
+            implicitWait = Integer.parseInt(config.getProperty("implicitWait"));
         }catch (IOException e){
             System.out.println(e);
         }
