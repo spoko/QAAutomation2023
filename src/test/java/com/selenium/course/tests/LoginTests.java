@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -43,11 +44,19 @@ public class LoginTests extends TestUtil {
         profileMenu.click();
         Thread.sleep(1000);//shall never be used
 
-        //Assert
-        Assert.assertTrue(logoutLink.isDisplayed());
+        //soft assert
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(1,1, "First Soft Assert");
+        softAssert.assertEquals(1, 2, "Second Soft Assert");
+        //maybe having some more stuff to check
+
+        //Assert - Hard assertion
+        Assert.assertTrue(logoutLink.isDisplayed(), "Logout link was not displayed");
         profileMenuXBtn.click();
         Assert.assertTrue(productsPageTitle.isDisplayed());
         Assert.assertEquals(productsPageTitle.getText(), "PRODUCTS");
+
+        softAssert.assertAll();
     }
 
     @Test (dataProvider = "wrongUsers")
