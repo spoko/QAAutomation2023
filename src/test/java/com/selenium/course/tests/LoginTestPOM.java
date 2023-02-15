@@ -8,7 +8,6 @@ import pages.ProductPage;
 
 public class LoginTestPOM extends TestUtil {
 
-    @Test(dataProvider = "correctUsers")
     public void successfulLogin(){
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("standard_user", "secret_sauce");
