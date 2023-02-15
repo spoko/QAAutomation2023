@@ -8,4 +8,9 @@
             <class name="com.selenium.course.tests.LoginTestPOM"/>
         </classes>
     </test>
+    <test name="ProductSuitePOM">
+        <classes>
+            <class name="com.selenium.course.tests.ProductTestPOM"/>
+        </classes>
+    </test>
 </suite>
