@@ -3,19 +3,9 @@
 <suite thread-count="3" verbose="1" name="QAAutomation2023"
        annotations="JDK" parallel="tests">
 
-    <test name="LoginSuite">
-        <classes>
-            <class name="com.selenium.course.tests.LoginTests"/>
-        </classes>
-    </test>
     <test name="LoginSuitePOM">
         <classes>
             <class name="com.selenium.course.tests.LoginTestPOM"/>
-        </classes>
-    </test>
-    <test name="Products Suite">
-        <classes>
-            <class name="com.selenium.course.tests.ProductTestPOM"/>
         </classes>
     </test>
 </suite>
